@@ -1,6 +1,9 @@
 
-/*全体
+/*å…¨ä½“
 ****/
+html{
+    height:100%
+}
 .container {
     display: flex;
     justify-content: center;
@@ -50,7 +53,7 @@ a {
 }
 
 /*
-サイド
+ã‚µã‚¤ãƒ‰
 ***/
 .side .side-inner {
     top: 0px;
@@ -108,7 +111,7 @@ a {
     }
 }
 
-/*メイン
+/*ãƒ¡ã‚¤ãƒ³
 ***/
 .main .main-header {
     padding: 20px;
@@ -249,3 +252,43 @@ a {
         margin-top: 10px;
     }
 }
+/* ä¼šå“¡ç™»éŒ²ç”»é¢ãƒ­ã‚°ã‚¤ãƒ³å…±é€š
+
+ ***/
+ body.signup{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    height: 100%;
+}
+ .signup{
+    background-color: #123;
+    color: #fff;
+}
+ .signup .form-signup{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+ .signup .logo-white{
+    margin-bottom: 30px;
+    width: 50px;
+}
+ .signup h1{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+ .signup input{
+    margin-bottom: 10px;
+    background-color: #123;
+    border-color: #456;
+    color: #fff;
+}
+ .signup input:focus{
+    background-color: #123;
+    border-color: #1af;
+    color: #fff;
+}
+
