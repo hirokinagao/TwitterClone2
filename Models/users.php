@@ -41,3 +41,47 @@ function createUser(array $data)
  
     return $response;
 }
+/**
+ * @param string $email 
+ * @param string $password
+ * @return array false 
+ * 
+ */
+function findUserAndCheckPassword(string $email,string $password){
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    // 接続チェック
+    if ($mysqli->connect_errno) {
+        echo 'MySQLの接続に失敗しました。：' . $mysqli->connect_error . "\n";
+        exit;
+    }
+  //入力値をエスケープ
+  $email = $mysqli->real_escape_string($email);
+  //クエリ作成
+  //-外部からのリクエストは何が入ってくるかわからないので、必ず、エスケープしたものをクオーとで囲む
+  $query = 'SELECT * FROM users WHERE email ="'. $email. '"';
+
+  //SQL実行
+  $result = $mysqli->query($query);
+  if(!$result){
+      //MYsqlに処理中にエラー発生
+      echo 'エラーメッセージ:'. $mysqli->error. "\n";
+      $mysqli->close();
+      return false;
+
+  }
+  //ユーザー情報を取得
+$user = $result->fetch_array(MYSQLI_ASSOC);
+if(!$user){
+    //ユーザーが存在しない
+    $mysqli->close();
+    return false;
+}
+//パスワードチェック
+if(password_verify($password,$user['password'])){
+    //パスワード不一致
+    $mysqli->close();
+    return false;
+}
+ $mysqli->close();
+ return $user;
+}
