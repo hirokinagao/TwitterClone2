@@ -6,10 +6,8 @@ include_once '../config.php';
 include_once '../util.php';
 // ログインしているのか
 
-// ここ
+//ログインチェック
 $user = getUserSession();
-
-
 
 if(!$user){
     //ログインしていない
