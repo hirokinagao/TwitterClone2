@@ -27,6 +27,7 @@ if (isset($_POST['email']) && isset($_POST['password'])){
     }else{
         //ログイン失敗
         $try_login_result = false;
+
     }
 }
 //画面表示

@@ -58,7 +58,7 @@ function findUserAndCheckPassword(string $email,string $password){
   $email = $mysqli->real_escape_string($email);
   //クエリ作成
   //-外部からのリクエストは何が入ってくるかわからないので、必ず、エスケープしたものをクオーとで囲む
-  $query = 'SELECT * FROM users WHERE email ="'. $email. '"';
+  $query = 'SELECT * FROM users WHERE email ="'.$email.'"';
 
   //SQL実行
   $result = $mysqli->query($query);
@@ -71,13 +71,18 @@ function findUserAndCheckPassword(string $email,string $password){
   }
   //ユーザー情報を取得
 $user = $result->fetch_array(MYSQLI_ASSOC);
+// var_dump($user);
+
+// $password = password_hash($password, PASSWORD_DEFAULT);
+// var_dump($password);
+// exit;
 if(!$user){
     //ユーザーが存在しない
     $mysqli->close();
     return false;
 }
 //パスワードチェック
-if(password_verify($password,$user['password'])){
+if(!password_verify($password,$user['password'])){
     //パスワード不一致
     $mysqli->close();
     return false;
